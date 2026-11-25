@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Inscripciones del XI Concurso Nacional de Matemática Lima Este 2026",
   "main": "server.js",
-  "scripts": { "start": "node server.js" },
+  "scripts": { "start": "node server.js", "test": "node --test test/*.test.js" },
   "engines": { "node": ">=20" },
   "dependencies": {
     "exceljs": "^4.4.0",

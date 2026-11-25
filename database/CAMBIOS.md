@@ -7,3 +7,4 @@ Responsable: Anthony Incio
 - Paso 3: datos de prueba ficticios para desarrollo (04_datos_prueba.sql).
 - Paso 4: instalador (instalar.sh) y script de inicio para Docker (docker/initdb.sh).
 - Paso 5: corrección del nombre de la carpeta docker (minúsculas) y permisos de ejecución de los scripts.
+- Paso 6: tablas de Tarpuy Analytics ML (05_analytics.sql: ml_ejecucion, ml_segmento y ml_asignacion), incluidas en instalar.sh.

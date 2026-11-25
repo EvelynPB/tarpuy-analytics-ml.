@@ -8,6 +8,7 @@ import { cx } from './components/comunes/estilos.js';
 import FormDelegacion from './components/delegacion/FormDelegacion.jsx';
 import FormLibre from './components/libre/FormLibre.jsx';
 import PanelOrganizador from './components/organizador/PanelOrganizador.jsx';
+import PanelAnalitica from './components/organizador/PanelAnalitica.jsx';
 
 function BotonModalidad({ activo, titulo, texto, precio, onClick }) {
   return (
@@ -87,6 +88,7 @@ export default function App() {
         <div hidden={!libre}><FormLibre /></div>
 
         {panel && <PanelOrganizador datos={panel} refPanel={refPanel} onVerificar={verificar} onCerrarSesion={salir} />}
+        {panel && <PanelAnalitica />}
       </main>
       <PiePagina onAccesoOrganizador={accesoOrganizador} />
     </>

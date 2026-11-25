@@ -18,7 +18,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/scripts" && pwd)"
 : "${CLAVE_LECTOR:?Define CLAVE_LECTOR (contraseña del rol resultados_lector)}"
 : "${CLAVE_ADMIN:?Define CLAVE_ADMIN (contraseña del rol resultados_admin)}"
 
-ARGS=(-v ON_ERROR_STOP=1 -q -f "$DIR/01_inscripciones.sql" -f "$DIR/02_resultados.sql"
+ARGS=(-v ON_ERROR_STOP=1 -q -f "$DIR/01_inscripciones.sql" -f "$DIR/02_resultados.sql" -f "$DIR/05_analytics.sql"
       -v clave_lector="$CLAVE_LECTOR" -v clave_admin="$CLAVE_ADMIN" -f "$DIR/03_roles.sql")
 if [[ "${1:-}" == "--datos-prueba" ]]; then
   ARGS+=(-f "$DIR/04_datos_prueba.sql")

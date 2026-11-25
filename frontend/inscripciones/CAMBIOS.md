@@ -6,3 +6,4 @@ Responsable: Diógenes Román
 - Paso 2: datos del concurso (config), validaciones (utils) y llamadas a la API (services).
 - Paso 3: componentes React (comunes, formulario de delegación, alumno libre y panel del organizador).
 - Paso 4: aplicación principal (App.jsx), punto de entrada (main.jsx) y tema de Tailwind (index.css).
+- Paso 5: panel Tarpuy Analytics ML (PanelAnalitica.jsx, graficos.jsx y services/analytics.js), visible solo con la sesión del organizador.

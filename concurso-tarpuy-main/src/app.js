@@ -5,7 +5,9 @@ const path = require('path');
 
 const inscripcionRoutes = require('./routes/inscripcion.routes');
 const adminRoutes = require('./routes/admin.routes');
+const analyticsRoutes = require('./routes/analytics.routes');
 const { securityHeaders } = require('./middlewares/security');
+const { needAdmin } = require('./middlewares/auth');
 const { HttpError } = require('./utils/http-error');
 
 const app = express();
@@ -13,6 +15,9 @@ const app = express();
 app.set('trust proxy', 1);
 app.disable('x-powered-by');
 
+// El archivo segmentos.json de Tarpuy Analytics ML supera el límite general de 200 kB.
+// Se comprueba la sesión antes de leer el cuerpo, para no aceptar archivos grandes de cualquiera.
+app.use('/api/admin/analytics/importar', needAdmin, express.json({ limit: '10mb' }));
 app.use(express.json({ limit: '200kb' }));
 app.use(securityHeaders);
 
@@ -27,6 +32,7 @@ app.get('/healthz', async (_req, res) => {
 });
 
 app.use('/api', inscripcionRoutes);
+app.use('/api/admin/analytics', analyticsRoutes);
 app.use('/api/admin', adminRoutes);
 
 /*

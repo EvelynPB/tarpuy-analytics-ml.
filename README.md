@@ -27,12 +27,14 @@ Grupo-2---Implementaci-n-de-un-software-web/
 ├── frontend/
 │   ├── inscripciones/               # React + Tailwind (puerto 5173 en desarrollo)
 │   └── resultados/                  # React + Tailwind (puerto 5174 en desarrollo)
+├── ml/                              # Tarpuy Analytics ML: modelo K-Means (Python)
 ├── database/
 │   ├── scripts/
 │   │   ├── 01_inscripciones.sql
 │   │   ├── 02_resultados.sql
 │   │   ├── 03_roles.sql
-│   │   └── 04_datos_prueba.sql
+│   │   ├── 04_datos_prueba.sql
+│   │   └── 05_analytics.sql
 │   └── docker/
 ├── legacy/
 │   └── Resultados-ConcursoMat2026-main/
@@ -63,6 +65,15 @@ Grupo-2---Implementaci-n-de-un-software-web/
 - Activación o desactivación de la publicación de resultados.
 - Consulta pública de resultados.
 
+### Tarpuy Analytics ML
+
+- Segmentación de participantes con K-Means a partir de los registros de inscripción (`ml/entrenar.py` o el cuaderno de Colab).
+- Panel de analítica dentro del panel del organizador: indicadores, inscripciones por día, perfil de cada segmento, métricas del modelo y exportación a Excel.
+- API protegida por la sesión del organizador: `GET /api/admin/analytics/resumen`, `/metricas`, `/segmentos`, `/segmentos/:codigo` y `/export.xlsx`, y `POST /api/admin/analytics/importar`.
+- Solo se muestran datos agregados; los grupos de menos de 5 participantes aparecen como «<5».
+
+Instrucciones completas en [`ml/README.md`](ml/README.md).
+
 ## Requisitos locales
 
 - Git.
@@ -86,6 +97,7 @@ Crear una base de datos, por ejemplo `tarpuy_local`. Desde la raíz del reposito
 ```powershell
 psql -U postgres -d tarpuy_local -f "database/scripts/01_inscripciones.sql"
 psql -U postgres -d tarpuy_local -f "database/scripts/02_resultados.sql"
+psql -U postgres -d tarpuy_local -f "database/scripts/05_analytics.sql"
 ```
 
 El archivo `03_roles.sql` configura roles con permisos específicos y requiere revisión de credenciales antes de utilizarse. `04_datos_prueba.sql` contiene datos ficticios para pruebas y **no debe ejecutarse en una base con datos reales**.
@@ -117,6 +129,8 @@ node --env-file=.env server.js
 ```
 
 Comprobación de salud: `http://localhost:8080/healthz`.
+
+Pruebas automáticas: `npm test`.
 
 ## Frontend de inscripciones
 
